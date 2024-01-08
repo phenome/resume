@@ -1,0 +1,13 @@
+---
+import Icon from './Icon.astro'
+
+interface Props {
+  svg: string
+}
+const { svg } = Astro.props
+---
+
+<div class="flex gap-2">
+  <Icon svg={svg} />
+  <slot />
+</div>

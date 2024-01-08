@@ -1,0 +1,112 @@
+---
+import '@fontsource/inter'
+import { Image } from 'astro:assets'
+
+import profileImage from '../../assets/profile3.jpg'
+import Header from '../../components/Header.astro'
+import JobEntry from '../../components/JobEntry.astro'
+import { languages } from '../../i18n/strings'
+import { getLangFromUrl, useTranslations } from '../../i18n/utils'
+
+export async function getStaticPaths() {
+  return Object.keys(languages).map((lang) => ({ params: { lang } }))
+}
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Henrique Pinheiro - {t('title.resume')}</title>
+  </head>
+  <body
+    class="font-[Inter] print:bg-gradient-to-r print:from-white print:to-slate-200 print:from-70% print:to-30%"
+  >
+    <div
+      class="grid grid-cols-[1fr_30%] mx-auto max-w-[960px] print:max-w-none bg-gradient-to-r from-white to-slate-200 from-70% to-30% drop-shadow-xl print:drop-shadow-none"
+    >
+      <Header />
+      <div
+        class="p-4 bg-gradient-to-br from-slate-300 from-50% to-50% to-slate-200 flex items-center justify-center"
+      >
+        <Image
+          src={profileImage}
+          alt="Henrique Pinheiro"
+          class="w-auto border-4 rounded-full h-36 border-slate-600"
+        />
+      </div>
+      <div class="p-4">
+        <div class="text-xl font-bold uppercase border-b-2 border-slate-800">
+          {t('main.workExperience')}
+        </div>
+        <JobEntry
+          title={t('job.1.title')}
+          company={t('job.1.company')}
+          from={t('job.1.from')}
+          to={t('job.1.to')}
+          description={t('job.1.description')}
+        />
+        <JobEntry
+          title={t('job.2.title')}
+          company={t('job.2.company')}
+          from={t('job.2.from')}
+          to={t('job.2.to')}
+          description={t('job.2.description')}
+        />
+        <JobEntry
+          title={t('job.3.title')}
+          company={t('job.3.company')}
+          from={t('job.3.from')}
+          to={t('job.3.to')}
+          description={t('job.3.description')}
+        />
+        <JobEntry
+          title={t('job.4.title')}
+          company={t('job.4.company')}
+          from={t('job.4.from')}
+          to={t('job.4.to')}
+          description={t('job.4.description')}
+        />
+      </div>
+      <div class="p-4 bg-slate-200">
+        <div
+          class="mt-1 mb-2 font-bold uppercase border-b-2 text-l border-slate-800"
+        >
+          {t('q.aboutMe')}
+        </div>
+        <div class="text-sm text-balance">{t('q.aboutMe.description')}</div>
+        <div
+          class="mt-4 mb-2 font-bold uppercase border-b-2 text-l border-slate-800"
+        >
+          {t('q.education')}
+        </div>
+        <div class="text-sm font-semibold">{t('q.education.title')}</div>
+        <div class="text-xs">PUC - Rio, 2001 - 2006</div>
+        <div
+          class="mt-4 mb-2 font-bold uppercase border-b-2 text-l border-slate-800"
+        >
+          {t('q.skills')}
+        </div>
+        <div class="text-sm list-disc">
+          {
+            [
+              t('q.skills.1'),
+              t('q.skills.2'),
+              t('q.skills.3'),
+              'React / Svelte / Vue',
+              'Typescript',
+              'NodeJS',
+              'SQL',
+              'AWS / GCP'
+            ].map((skill) => <div class="ml-4 list-item">{skill}</div>)
+          }
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
