@@ -6,22 +6,21 @@ const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
 ---
 
-<div
-  class="flex flex-col justify-center p-4 text-black border-white bg-slate-300"
->
-  <div class="text-3xl font-bold">Henrique Pinheiro</div>
-  <div class="text-lg">{t('header.jobTitle')}</div>
-  <div class="m-4 border-b border-slate-400"></div>
-  <div class="grid grid-cols-2 gap-2 text-sm">
+<header class="identity">
+  <p class="eyebrow">Professional Resume</p>
+  <h1>Henrique Pinheiro</h1>
+  <p class="role">{t('header.jobTitle')}</p>
+  <div class="divider"></div>
+  <div class="contacts">
     <IconEntry svg="phone">+55.21.993694515</IconEntry>
-    <a href="https://github.com/phenome" target="_blank">
-      <IconEntry svg="github">https://github.com/phenome</IconEntry>
-    </a>
     <a href="mailto:henrique@mendespinheiro.com">
       <IconEntry svg="mail">henrique@mendespinheiro.com</IconEntry>
     </a>
-    <a href="https://linkedin.com/in/phenome" target="_blank">
-      <IconEntry svg="linkedin">https://linkedin.com/in/phenome</IconEntry>
+    <a href="https://github.com/phenome" target="_blank" rel="noreferrer">
+      <IconEntry svg="github">github.com/phenome</IconEntry>
+    </a>
+    <a href="https://linkedin.com/in/phenome" target="_blank" rel="noreferrer">
+      <IconEntry svg="linkedin">linkedin.com/in/phenome</IconEntry>
     </a>
   </div>
-</div>
+</header>

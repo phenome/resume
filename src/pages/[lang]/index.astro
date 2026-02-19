@@ -1,5 +1,4 @@
 ---
-import '@fontsource/inter'
 import { Image } from 'astro:assets'
 
 import profileImage from '../../assets/profile3.jpg'
@@ -16,97 +15,589 @@ const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
 ---
 
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Spectral:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
     <title>Henrique Pinheiro - {t('title.resume')}</title>
   </head>
-  <body
-    class="font-[Inter] print:bg-gradient-to-r print:from-white print:to-slate-200 print:from-70% print:to-30%"
-  >
-    <div
-      class="grid grid-cols-[1fr_30%] mx-auto max-w-[960px] print:max-w-none bg-gradient-to-r from-white to-slate-200 from-70% to-30% drop-shadow-xl print:drop-shadow-none"
-    >
-      <Header />
-      <div
-        class="p-4 bg-gradient-to-br from-slate-300 from-50% to-50% to-slate-200 flex items-center justify-center"
-      >
-        <Image
-          src={profileImage}
-          alt="Henrique Pinheiro"
-          class="w-auto border-4 rounded-full h-36 border-slate-600"
-        />
-      </div>
-      <div class="p-4">
-        <div class="text-xl font-bold uppercase border-b-2 border-slate-800">
-          {t('main.workExperience')}
+  <body>
+    <main class="resume-shell">
+      <section class="top-grid">
+        <div class="hero-column">
+          <Header />
+          <article class="content-panel about">
+            <p class="panel-kicker">{t('q.aboutMe')}</p>
+            <p class="panel-body">{t('q.aboutMe.description')}</p>
+          </article>
+          <article class="content-panel education-panel">
+            <p class="panel-kicker">{t('q.education')}</p>
+            <p class="panel-title">{t('q.education.title')}</p>
+            <p class="panel-body subtle">PUC - Rio, 2001 - 2006</p>
+          </article>
         </div>
-        <JobEntry
-          title={t('job.1.title')}
-          company={t('job.1.company')}
-          from={t('job.1.from')}
-          to={t('job.1.to')}
-          description={t('job.1.description')}
-        />
-        <JobEntry
-          title={t('job.2.title')}
-          company={t('job.2.company')}
-          from={t('job.2.from')}
-          to={t('job.2.to')}
-          description={t('job.2.description')}
-        />
-        <JobEntry
-          title={t('job.3.title')}
-          company={t('job.3.company')}
-          from={t('job.3.from')}
-          to={t('job.3.to')}
-          description={t('job.3.description')}
-        />
-        <JobEntry
-          title={t('job.4.title')}
-          company={t('job.4.company')}
-          from={t('job.4.from')}
-          to={t('job.4.to')}
-          description={t('job.4.description')}
-        />
-      </div>
-      <div class="p-4 bg-slate-200">
-        <div
-          class="mt-1 mb-2 font-bold uppercase border-b-2 text-l border-slate-800"
-        >
-          {t('q.aboutMe')}
+        <aside class="rail-column">
+          <div class="portrait-wrap">
+            <Image
+              src={profileImage}
+              alt="Henrique Pinheiro"
+              class="portrait"
+            />
+          </div>
+          <article class="content-panel skills">
+            <p class="panel-kicker">{t('q.skills')}</p>
+            <div class="skills-grid">
+              {
+                [
+                  t('q.skills.1'),
+                  t('q.skills.2'),
+                  t('q.skills.3'),
+                  'React / Svelte / Vue',
+                  'Typescript',
+                  'NodeJS',
+                  'SQL',
+                  'AWS / GCP'
+                ].map((skill) => <span>{skill}</span>)
+              }
+            </div>
+          </article>
+        </aside>
+      </section>
+
+      <section class="timeline-section">
+        <div class="section-header">
+          <h2>{t('main.workExperience')}</h2>
         </div>
-        <div class="text-sm text-balance">{t('q.aboutMe.description')}</div>
-        <div
-          class="mt-4 mb-2 font-bold uppercase border-b-2 text-l border-slate-800"
-        >
-          {t('q.education')}
+        <div class="timeline-list">
+          <JobEntry
+            title={t('job.6.title')}
+            company={t('job.6.company')}
+            from={t('job.6.from')}
+            to={t('job.6.to')}
+            description={t('job.6.description')}
+          />
+          <JobEntry
+            title={t('job.5.title')}
+            company={t('job.5.company')}
+            from={t('job.5.from')}
+            to={t('job.5.to')}
+            description={t('job.5.description')}
+          />
+          <JobEntry
+            title={t('job.1.title')}
+            company={t('job.1.company')}
+            from={t('job.1.from')}
+            to={t('job.1.to')}
+            description={t('job.1.description')}
+          />
+          <JobEntry
+            title={t('job.2.title')}
+            company={t('job.2.company')}
+            from={t('job.2.from')}
+            to={t('job.2.to')}
+            description={t('job.2.description')}
+          />
+          <JobEntry
+            title={t('job.3.title')}
+            company={t('job.3.company')}
+            from={t('job.3.from')}
+            to={t('job.3.to')}
+            description={t('job.3.description')}
+          />
+          <JobEntry
+            title={t('job.4.title')}
+            company={t('job.4.company')}
+            from={t('job.4.from')}
+            to={t('job.4.to')}
+            description={t('job.4.description')}
+          />
         </div>
-        <div class="text-sm font-semibold">{t('q.education.title')}</div>
-        <div class="text-xs">PUC - Rio, 2001 - 2006</div>
-        <div
-          class="mt-4 mb-2 font-bold uppercase border-b-2 text-l border-slate-800"
-        >
-          {t('q.skills')}
-        </div>
-        <div class="text-sm list-disc">
-          {
-            [
-              t('q.skills.1'),
-              t('q.skills.2'),
-              t('q.skills.3'),
-              'React / Svelte / Vue',
-              'Typescript',
-              'NodeJS',
-              'SQL',
-              'AWS / GCP'
-            ].map((skill) => <div class="ml-4 list-item">{skill}</div>)
-          }
-        </div>
-      </div>
-    </div>
+      </section>
+    </main>
   </body>
 </html>
+
+<style>
+  :global(:root) {
+    --page: #edf0f3;
+    --paper: #ffffff;
+    --ink: #18222f;
+    --muted: #506172;
+    --accent: #0f4c81;
+    --line: #d7dde4;
+    --pill: #eff4fa;
+  }
+
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(body) {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--page);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', sans-serif;
+    line-height: 1.4;
+  }
+
+  .resume-shell {
+    width: min(1040px, 94vw);
+    margin: 2.2rem auto;
+    padding: 1.6rem;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--paper);
+    box-shadow: 0 12px 28px #0d17280f;
+  }
+
+  .top-grid {
+    display: grid;
+    gap: 1.35rem;
+    grid-template-columns: minmax(0, 1.75fr) minmax(250px, 1fr);
+  }
+
+  .hero-column {
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  :global(.identity) {
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
+    padding: 0 0 0.72rem;
+    background: transparent;
+  }
+
+  :global(.identity .eyebrow) {
+    margin: 0;
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--accent);
+  }
+
+  :global(.identity h1) {
+    margin: 0.28rem 0 0.08rem;
+    font-size: clamp(2rem, 3.8vw, 3rem);
+    font-family: 'Spectral', serif;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    line-height: 1;
+  }
+
+  :global(.identity .role) {
+    margin: 0;
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  :global(.identity .divider) {
+    margin: 0.62rem 0 0.45rem;
+    border-top: 1px solid var(--line);
+  }
+
+  :global(.identity .contacts) {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem 0.9rem;
+    font-size: 0.8rem;
+  }
+
+  :global(.identity .contacts a) {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  :global(.identity .contacts a:hover) {
+    text-decoration: underline;
+  }
+
+  :global(.icon-entry) {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  :global(.icon-asset) {
+    width: 0.85rem;
+    height: 0.85rem;
+    opacity: 0.7;
+  }
+
+  .content-panel {
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    background: transparent;
+  }
+
+  .about {
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 0.66rem;
+  }
+
+  .education-panel {
+    margin-top: 0.22rem;
+  }
+
+  .panel-kicker {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.64rem;
+    color: var(--accent);
+  }
+
+  .panel-title {
+    margin: 0.45rem 0 0;
+    font-weight: 700;
+  }
+
+  .panel-body {
+    margin: 0.35rem 0 0;
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+
+  .subtle {
+    font-size: 0.8rem;
+  }
+
+  .rail-column {
+    display: grid;
+    gap: 0.52rem;
+    align-content: start;
+  }
+
+  .portrait-wrap {
+    display: grid;
+    place-items: center;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    background: transparent;
+  }
+
+  .portrait {
+    width: min(190px, 100%);
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+  }
+
+  .skills-grid {
+    margin-top: 0.45rem;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.35rem;
+  }
+
+  .skills-grid span {
+    display: block;
+    padding: 0.12rem 0;
+    border-radius: 0;
+    font-size: 0.75rem;
+    line-height: 1.3;
+    background: transparent;
+    border: 0;
+  }
+
+  .timeline-section {
+    margin-top: 1.24rem;
+    padding-top: 0.78rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .section-header {
+    margin-bottom: 0.65rem;
+  }
+
+  .section-header h2 {
+    margin: 0;
+    font-size: 1rem;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #203a57;
+  }
+
+  .timeline-list {
+    display: grid;
+    gap: 0.55rem;
+  }
+
+  :global(.experience-row) {
+    display: grid;
+    grid-template-columns: 18px minmax(0, 1fr);
+    gap: 0.55rem;
+    align-items: start;
+  }
+
+  :global(.timeline-dot) {
+    width: 8px;
+    height: 8px;
+    margin-top: 1.05rem;
+    margin-left: 4px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  :global(.experience-card) {
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
+    padding: 0.44rem 0 0.52rem;
+    background: transparent;
+  }
+
+  :global(.experience-meta) {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.14rem 0.38rem;
+    border-radius: 6px;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #2d4563;
+    background: var(--pill);
+    border: 1px solid #dbe4ee;
+  }
+
+  :global(.meta-separator) {
+    opacity: 0.6;
+  }
+
+  :global(.experience-card h3) {
+    margin: 0.45rem 0 0;
+    font-size: 0.98rem;
+    line-height: 1.25;
+  }
+
+  :global(.company) {
+    margin: 0.08rem 0 0.32rem;
+    color: #2a4768;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  :global(.description) {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.84rem;
+    line-height: 1.38;
+  }
+
+  .timeline-list :global(.experience-row:last-child .experience-card) {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  @media (max-width: 900px) {
+    .top-grid {
+      grid-template-columns: minmax(0, 1.55fr) minmax(180px, 1fr);
+    }
+
+    .resume-shell {
+      margin: 1rem auto;
+      padding: 0.9rem;
+      border-radius: 10px;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .top-grid {
+      grid-template-columns: minmax(0, 1fr) minmax(168px, 188px);
+      align-items: start;
+    }
+
+    :global(.identity .contacts) {
+      grid-template-columns: 1fr;
+      gap: 0.4rem;
+    }
+
+    .skills-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media print {
+    @page {
+      margin: 0.22in;
+    }
+
+    :global(body) {
+      background: white;
+      color: #111;
+      font-size: 9pt;
+      line-height: 1.28;
+    }
+
+    .resume-shell {
+      margin: 0;
+      width: 100%;
+      border: 0;
+      box-shadow: none;
+      border-radius: 0;
+      padding: 0.06in 0.12in 0.04in;
+      background: white;
+    }
+
+    .top-grid {
+      grid-template-columns: 1.6fr 1fr;
+      gap: 0.3rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .hero-column,
+    .rail-column {
+      gap: 0.3rem;
+    }
+
+    :global(.identity) {
+      padding: 0 0 0.3rem;
+      border-bottom: 1px solid #cfd5db;
+    }
+
+    :global(.identity h1) {
+      font-size: 1.85rem;
+      margin: 0.18rem 0 0.04rem;
+    }
+
+    :global(.identity .role) {
+      font-size: 0.76rem;
+      letter-spacing: 0.035em;
+    }
+
+    :global(.identity .divider) {
+      margin: 0.35rem 0 0.3rem;
+    }
+
+    :global(.identity .contacts) {
+      gap: 0.22rem 0.5rem;
+      font-size: 0.67rem;
+    }
+
+    .content-panel {
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+    }
+
+    .about,
+    .education-panel,
+    .skills {
+      padding-right: 0.08in;
+    }
+
+    .panel-kicker {
+      font-size: 0.54rem;
+    }
+
+    .panel-title {
+      margin-top: 0.2rem;
+      font-size: 0.78rem;
+    }
+
+    .panel-body {
+      margin-top: 0.18rem;
+      font-size: 0.72rem;
+      line-height: 1.26;
+    }
+
+    .skills-grid {
+      margin-top: 0.2rem;
+      gap: 0.18rem;
+    }
+
+    .skills-grid span {
+      font-size: 0.63rem;
+      padding: 0.22rem 0.3rem;
+    }
+
+    .portrait-wrap {
+      display: grid;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+    }
+
+    .portrait {
+      width: min(112px, 100%);
+      border-radius: 6px;
+    }
+
+    .timeline-section {
+      margin-top: 0.86rem;
+      padding-top: 0.42rem;
+      border-top: 1px solid #e0e6ec;
+    }
+
+    .section-header {
+      margin-bottom: 0.3rem;
+    }
+
+    .section-header h2 {
+      font-size: 0.78rem;
+    }
+
+    .timeline-list {
+      grid-template-columns: 1fr;
+      gap: 0.2rem;
+      align-items: start;
+    }
+
+    :global(.experience-row) {
+      grid-template-columns: 16px minmax(0, 1fr);
+      gap: 0.34rem;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    :global(.timeline-dot) {
+      margin-top: 0.68rem;
+      margin-left: 3px;
+      width: 6px;
+      height: 6px;
+    }
+
+    :global(.experience-card) {
+      padding: 0.2rem 0.22rem 0.26rem 0;
+      border-bottom: 1px solid #e4e9ee;
+    }
+
+    :global(.experience-meta) {
+      font-size: 0.55rem;
+      padding: 0.08rem 0.2rem;
+    }
+
+    :global(.experience-card h3) {
+      margin-top: 0.2rem;
+      font-size: 0.74rem;
+    }
+
+    :global(.company) {
+      margin: 0.02rem 0 0.16rem;
+      font-size: 0.62rem;
+    }
+
+    :global(.description) {
+      font-size: 0.65rem;
+      line-height: 1.24;
+    }
+  }
+</style>
