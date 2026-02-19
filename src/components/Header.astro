@@ -1,13 +1,18 @@
 ---
-import { getLangFromUrl, useTranslations } from '../i18n/utils'
+import { defaultLang } from '../i18n/strings'
+import { useTranslations } from '../i18n/utils'
 import IconEntry from './IconEntry.astro'
 
-const lang = getLangFromUrl(Astro.url)
+interface Props {
+  lang?: 'en' | 'pt'
+}
+
+const { lang = defaultLang } = Astro.props as Props
 const t = useTranslations(lang)
 ---
 
 <header class="identity">
-  <p class="eyebrow">Professional Resume</p>
+  <p class="eyebrow">{t('header.resumeLabel')}</p>
   <h1>Henrique Pinheiro</h1>
   <p class="role">{t('header.jobTitle')}</p>
   <div class="divider"></div>
